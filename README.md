@@ -2,6 +2,14 @@
 
 CLI Prebuilts
 
+## Installation
+
+```bash
+git clone https://github.com/ShangjinTang/cli-prebuilts.git --depth=1
+```
+
+## Pacakges
+
 | Decription | Binaries                                              | Stars                                                                                                    | Last Release                                                                                                      |
 | ---------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | nvim       | [nvim ](https://github.com/neovim/neovim)             | ![GitHub Repo stars](https://img.shields.io/github/stars/neovim/neovim?style=flat-square&label=)         | ![GitHub last release](https://img.shields.io/github/release-date/neovim/neovim?style=flat-square&label=)         |
