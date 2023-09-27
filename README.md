@@ -1,2 +1,0 @@
-# cli-prebuilts
-CLI Prebuilts
