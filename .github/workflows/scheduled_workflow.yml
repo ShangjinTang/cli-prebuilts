@@ -2,6 +2,21 @@ name: Scheduled Workflow
 on:
   schedule:
     - cron: "0 0 * * *" # execute at 00:00 everyday
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      tags:
+        description: "Test scenario tags"
+        required: false
+        type: boolean
 
 jobs:
   run_script:
@@ -13,7 +28,7 @@ jobs:
 
       - name: Run script and commit download releases
         run: |
-          ../../scripts/gh_release_download --all --install --verbose
+          ./scripts/gh_release_download --all --install --verbose
 
           git config --local user.email "shangjin.tang@github.com"
           git config --local user.name "GitHub Action"
