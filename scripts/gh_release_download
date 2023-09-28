@@ -251,66 +251,66 @@ function main() {
         print_separate_line_wide_with_optional_arg "Download"
     fi
 
-    # # nvim: https://github.com/neovim/neovim/releases/download
-    # start_download_install_binary_with_repo "nvim" "neovim/neovim" "nvim.appimage"
+    # nvim: https://github.com/neovim/neovim/releases/download
+    start_download_install_binary_with_repo "nvim" "neovim/neovim" "nvim.appimage"
 
-    # # ast-grep: https://github.com/ast-grep/ast-grep/releases/latest
-    # start_download_install_binary_with_repo "ast-grep" "ast-grep/ast-grep" "sg-x86_64-unknown-linux-gnu.zip"
+    # ast-grep: https://github.com/ast-grep/ast-grep/releases/latest
+    start_download_install_binary_with_repo "ast-grep" "ast-grep/ast-grep" "sg-x86_64-unknown-linux-gnu.zip"
 
-    # # bat: https://github.com/sharkdp/bat/releases/latest
-    # start_download_install_binary_with_repo "bat" "sharkdp/bat" "bat-*-x86_64-unknown-linux-musl.tar.gz"
+    # bat: https://github.com/sharkdp/bat/releases/latest
+    start_download_install_binary_with_repo "bat" "sharkdp/bat" "bat-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # delta: https://github.com/dandavison/delta/releases/latest
-    # start_download_install_binary_with_repo "delta" "dandavison/delta" "delta-*-x86_64-unknown-linux-musl.tar.gz"
+    # delta: https://github.com/dandavison/delta/releases/latest
+    start_download_install_binary_with_repo "delta" "dandavison/delta" "delta-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # dua: https://github.com/Byron/dua-cli/releases/latest
-    # start_download_install_binary_with_repo "dua" "Byron/dua-cli" "dua-*-x86_64-unknown-linux-musl.tar.gz"
+    # dua: https://github.com/Byron/dua-cli/releases/latest
+    start_download_install_binary_with_repo "dua" "Byron/dua-cli" "dua-*-x86_64-unknown-linux-musl.tar.gz"
 
     # dust: https://github.com/bootandy/dust/releases/latest
     start_download_install_binary_with_repo "dust" "bootandy/dust" "dust-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # fd: https://github.com/sharkdp/fd/releases/latest
-    # start_download_install_binary_with_repo "fd" "sharkdp/fd" "fd-*-x86_64-unknown-linux-musl.tar.gz"
+    # fd: https://github.com/sharkdp/fd/releases/latest
+    start_download_install_binary_with_repo "fd" "sharkdp/fd" "fd-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # hexyl: https://github.com/sharkdp/hexyl/releases/latest
-    # start_download_install_binary_with_repo "hexyl" "sharkdp/hexyl" "hexyl-*-x86_64-unknown-linux-musl.tar.gz"
+    # hexyl: https://github.com/sharkdp/hexyl/releases/latest
+    start_download_install_binary_with_repo "hexyl" "sharkdp/hexyl" "hexyl-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # hyperfine: https://github.com/sharkdp/hyperfine/releases/latest
-    # start_download_install_binary_with_repo "hyperfine" "sharkdp/hyperfine" "hyperfine-*-x86_64-unknown-linux-musl.tar.gz"
+    # hyperfine: https://github.com/sharkdp/hyperfine/releases/latest
+    start_download_install_binary_with_repo "hyperfine" "sharkdp/hyperfine" "hyperfine-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # lazygit: https://github.com/jesseduffield/lazygit/releases/latest
-    # start_download_install_binary_with_repo "lazygit" "jesseduffield/lazygit" "lazygit_0.40.2_Linux_x86_64.tar.gz"
+    # lazygit: https://github.com/jesseduffield/lazygit/releases/latest
+    start_download_install_binary_with_repo "lazygit" "jesseduffield/lazygit" "lazygit_0.40.2_Linux_x86_64.tar.gz"
 
-    # # lsd: https://github.com/lsd-rs/lsd/releases/latest
-    # start_download_install_binary_with_repo "lsd" "lsd-rs/lsd" "lsd-*-x86_64-unknown-linux-musl.tar.gz"
+    # lsd: https://github.com/lsd-rs/lsd/releases/latest
+    start_download_install_binary_with_repo "lsd" "lsd-rs/lsd" "lsd-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # macchina: https://github.com/Macchina-CLI/macchina/releases/latest
-    # start_download_install_binary_with_repo "macchina" "Macchina-CLI/macchina" "macchina-linux-x86_64"
+    # macchina: https://github.com/Macchina-CLI/macchina/releases/latest
+    start_download_install_binary_with_repo "macchina" "Macchina-CLI/macchina" "macchina-linux-x86_64"
 
-    # # ouch: https://github.com/ouch-org/ouch/releases/latest
-    # start_download_install_binary_with_repo "ouch" "ouch-org/ouch" "ouch-x86_64-unknown-linux-musl.tar.gz"
+    # ouch: https://github.com/ouch-org/ouch/releases/latest
+    start_download_install_binary_with_repo "ouch" "ouch-org/ouch" "ouch-x86_64-unknown-linux-musl.tar.gz"
 
-    # # procs: https://github.com/dalance/procs/releases/latest
-    # start_download_install_binary_with_repo "procs" "dalance/procs" "procs-*-x86_64-linux.zip"
+    # procs: https://github.com/dalance/procs/releases/latest
+    start_download_install_binary_with_repo "procs" "dalance/procs" "procs-*-x86_64-linux.zip"
 
-    # # pueue & pueued: https://github.com/Nukesor/pueue/releases/latest
-    # start_download_install_binary_with_repo "pueue" "Nukesor/pueue" "pueue-linux-x86_64"
-    # start_download_install_binary_with_repo "pueued" "Nukesor/pueue" "pueued-linux-x86_64"
+    # pueue & pueued: https://github.com/Nukesor/pueue/releases/latest
+    start_download_install_binary_with_repo "pueue" "Nukesor/pueue" "pueue-linux-x86_64"
+    start_download_install_binary_with_repo "pueued" "Nukesor/pueue" "pueued-linux-x86_64"
 
-    # # rg: https://github.com/BurntSushi/ripgrep/releases/latest
-    # start_download_install_binary_with_repo "rg" "BurntSushi/ripgrep" "ripgrep-*-x86_64-unknown-linux-musl.tar.gz"
+    # rg: https://github.com/BurntSushi/ripgrep/releases/latest
+    start_download_install_binary_with_repo "rg" "BurntSushi/ripgrep" "ripgrep-*-x86_64-unknown-linux-musl.tar.gz"
 
-    # # sd: https://github.com/chmln/sd/releases/latest
-    # start_download_install_binary_with_repo "sd" "chmln/sd" "sd-*-x86_64-unknown-linux-musl"
+    # sd: https://github.com/chmln/sd/releases/latest
+    start_download_install_binary_with_repo "sd" "chmln/sd" "sd-*-x86_64-unknown-linux-musl"
 
-    # # tldr: https://github.com/dbrgn/tealdeer/releases/latest
-    # start_download_install_binary_with_repo "tldr" "dbrgn/tealdeer" "tealdeer-linux-x86_64-musl"
+    # tldr: https://github.com/dbrgn/tealdeer/releases/latest
+    start_download_install_binary_with_repo "tldr" "dbrgn/tealdeer" "tealdeer-linux-x86_64-musl"
 
-    # # tokei: https://github.com/XAMPPRocky/tokei/releases/latest
-    # start_download_install_binary_with_repo "tokei" "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-gnu.tar.gz"
+    # tokei: https://github.com/XAMPPRocky/tokei/releases/latest
+    start_download_install_binary_with_repo "tokei" "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-gnu.tar.gz"
 
-    # # tokei: https://github.com/watchexec/watchexec/releases/latest
-    # start_download_install_binary_with_repo "watchexec" "watchexec/watchexec" "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
+    # tokei: https://github.com/watchexec/watchexec/releases/latest
+    start_download_install_binary_with_repo "watchexec" "watchexec/watchexec" "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
 }
 
 # shellcheck source=source.sh

@@ -19,7 +19,10 @@ jobs:
           git config --local user.email "shangjin.tang@github.com"
           git config --local user.name "GitHub Action"
           ./scripts/gh_release_download --all --install --verbose
+          ls ~/.gh_releases/bin
           mv -f ~/.gh_releases/bin/* .
+          git status
           git add .
+          git status
           git commit -m "Update releases [skip ci]"
-          git push
+          gh repo push origin HEAD:main
