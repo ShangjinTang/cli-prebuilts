@@ -1,0 +1,23 @@
+name: Scheduled Workflow
+on:
+  schedule:
+    - cron: "0 0 * * *" # execute at 00:00 everyday
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run script and commit download releases
+        run: |
+          ../../scripts/gh_release_download --all --install --verbose
+
+          git config --local user.email "shangjin.tang@github.com"
+          git config --local user.name "GitHub Action"
+          mv -f ~/.gh_releases/bin/* .
+          git add .
+          git commit -m "Update releases [skip ci]"
+          git push
