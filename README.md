@@ -1,6 +1,6 @@
 # cli-prebuilts
 
-Recommended CLI prebuilt binaries which are auto checked/updated everday.
+Recommended CLI prebuilt binaries which are up-to-date (checked everday).
 
 ## Installation
 
@@ -8,7 +8,7 @@ Recommended CLI prebuilt binaries which are auto checked/updated everday.
 git clone https://github.com/ShangjinTang/cli-prebuilts.git ~/.prebuilts --depth=1
 ```
 
-Add `~/.prebuilts` to your $PATH.
+And add `~/.prebuilts/bin` to your $PATH.
 
 ## Pacakges
 
