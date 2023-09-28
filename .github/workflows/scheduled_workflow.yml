@@ -18,7 +18,7 @@ jobs:
         run: |
           git config --local user.email "shangjin.tang@github.com"
           git config --local user.name "GitHub Action"
-          ./scripts/gh_release_download --all --install --verbose
+          ./gh_release_download --all --install --verbose
           rm -rf ./prebuilts && mv ~/.gh_releases/bin ./prebuilts
           if [ -z "$(git status --porcelain)" ]; then
             echo "No new files to commit."
