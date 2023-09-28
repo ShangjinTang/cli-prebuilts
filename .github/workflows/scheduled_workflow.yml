@@ -3,20 +3,6 @@ on:
   schedule:
     - cron: "0 0 * * *" # execute at 00:00 everyday
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: "Log level"
-        required: true
-        default: "warning"
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
-      tags:
-        description: "Test scenario tags"
-        required: false
-        type: boolean
 
 jobs:
   run_script:
@@ -26,12 +12,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run script and commit download releases
+      - name: Run script based on 'gh' and commit download releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./scripts/gh_release_download --all --install --verbose
-
           git config --local user.email "shangjin.tang@github.com"
           git config --local user.name "GitHub Action"
+          ./scripts/gh_release_download --all --install --verbose
           mv -f ~/.gh_releases/bin/* .
           git add .
           git commit -m "Update releases [skip ci]"
