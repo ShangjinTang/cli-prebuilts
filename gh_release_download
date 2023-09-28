@@ -677,6 +677,7 @@ function main() {
     # check environment
     print_separate_line_wide_with_optional_arg "ENV CHECK"
     env_check
+
     # prepare directories
     [[ ! -d $DOWNLOAD_DIR ]] && mkdir -p $DOWNLOAD_DIR
     [[ ! -d $INSTALL_DIR ]] && mkdir -p $INSTALL_DIR
