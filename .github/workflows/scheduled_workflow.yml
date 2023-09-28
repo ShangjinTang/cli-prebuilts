@@ -19,10 +19,11 @@ jobs:
           git config --local user.email "shangjin.tang@github.com"
           git config --local user.name "GitHub Action"
           ./scripts/gh_release_download --all --install --verbose
-          ls ~/.gh_releases/bin
-          mv -f ~/.gh_releases/bin/* .
-          git status
+          rm -rf ./prebuilts && mv ~/.gh_releases/bin ./prebuilts
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No new files to commit."
+            exit 0
+          fi
           git add .
-          git status
           git commit -m "Update releases [skip ci]"
-          gh repo push origin HEAD:main
+          git push
