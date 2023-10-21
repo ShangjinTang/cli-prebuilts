@@ -692,6 +692,12 @@ function main() {
     # nvim: https://github.com/neovim/neovim/releases/download
     start_download_install_binary_with_repo "nvim" "neovim/neovim" "nvim.appimage"
 
+    # rtx: https://github.com/jdx/rtx/releases/download
+    start_download_install_binary_with_repo "rtx" "jdx/rtx" "rtx-*-linux-x64"
+
+    # atuin: https://github.com/atuinsh/atuin/releases/download
+    start_download_install_binary_with_repo "atuin" "atuinsh/atuin" "atuin-*-x86_64-unknown-linux-musl.tar.gz"
+
     # ast-grep: https://github.com/ast-grep/ast-grep/releases/latest
     start_download_install_binary_with_repo "ast-grep" "ast-grep/ast-grep" "sg-x86_64-unknown-linux-gnu.zip"
 
@@ -706,6 +712,9 @@ function main() {
 
     # dust: https://github.com/bootandy/dust/releases/latest
     start_download_install_binary_with_repo "dust" "bootandy/dust" "dust-*-x86_64-unknown-linux-musl.tar.gz"
+
+    # eza: https://github.com/eza-community/eza
+    start_download_install_binary_with_repo "eza" "eza-community/eza" "eza_x86_64-unknown-linux-musl.tar.gz"
 
     # fd: https://github.com/sharkdp/fd/releases/latest
     start_download_install_binary_with_repo "fd" "sharkdp/fd" "fd-*-x86_64-unknown-linux-musl.tar.gz"
@@ -747,7 +756,7 @@ function main() {
     # tokei: https://github.com/XAMPPRocky/tokei/releases/latest
     start_download_install_binary_with_repo "tokei" "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-gnu.tar.gz"
 
-    # tokei: https://github.com/watchexec/watchexec/releases/latest
+    # watchexec: https://github.com/watchexec/watchexec/releases/latest
     start_download_install_binary_with_repo "watchexec" "watchexec/watchexec" "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
 }
 
