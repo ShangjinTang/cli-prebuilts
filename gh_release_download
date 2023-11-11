@@ -600,7 +600,7 @@ function extract_targz_tarxz_from_download() {
     local PATTERN=$1
     local BINARY=$2
     verbose_print "  - [FileType] .tar.gz"
-    if [[ $BINARY == "lazygit" ]] || [[ $BINARY == "tokei" ]]; then
+    if [[ $BINARY == "lazygit" ]] || [[ $BINARY == "tokei" ]] || [[ $BINARY == "croc" ]]; then
         verbose_print "  - [Executing] tar -xf $DOWNLOAD_DIR/$PATTERN --strip-components=0 --wildcards \"${BINARY}\" -C $INSTALL_DIR" "$fg_cyan"
         tar -xf $DOWNLOAD_DIR/$PATTERN --strip-components=0 --wildcards "${BINARY}" -C $INSTALL_DIR --touch
     else
@@ -704,6 +704,9 @@ function main() {
     # bat: https://github.com/sharkdp/bat/releases/latest
     start_download_install_binary_with_repo "bat" "sharkdp/bat" "bat-*-x86_64-unknown-linux-musl.tar.gz"
 
+    # croc: https://github.com/schollz/croc/releases/download
+    start_download_install_binary_with_repo "croc" "schollz/croc" "croc_*_Linux-64bit.tar.gz"
+
     # delta: https://github.com/dandavison/delta/releases/latest
     start_download_install_binary_with_repo "delta" "dandavison/delta" "delta-*-x86_64-unknown-linux-musl.tar.gz"
 
@@ -748,7 +751,7 @@ function main() {
     start_download_install_binary_with_repo "rg" "BurntSushi/ripgrep" "ripgrep-*-x86_64-unknown-linux-musl.tar.gz"
 
     # sd: https://github.com/chmln/sd/releases/latest
-    start_download_install_binary_with_repo "sd" "chmln/sd" "sd-*-x86_64-unknown-linux-musl"
+    start_download_install_binary_with_repo "sd" "chmln/sd" "sd-*-x86_64-unknown-linux-musl.tar.gz"
 
     # tldr: https://github.com/dbrgn/tealdeer/releases/latest
     start_download_install_binary_with_repo "tldr" "dbrgn/tealdeer" "tealdeer-linux-x86_64-musl"
