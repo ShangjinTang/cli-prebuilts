@@ -707,6 +707,9 @@ function main() {
     # croc: https://github.com/schollz/croc/releases/download
     start_download_install_binary_with_repo "croc" "schollz/croc" "croc_*_Linux-64bit.tar.gz"
 
+    # csvlens: https://github.com/YS-L/csvlens/releases/latest
+    start_download_install_binary_with_repo "csvlens" "YS-L/csvlens" "csvlens-x86_64-unknown-linux-gnu.tar.xz"
+
     # delta: https://github.com/dandavison/delta/releases/latest
     start_download_install_binary_with_repo "delta" "dandavison/delta" "delta-*-x86_64-unknown-linux-musl.tar.gz"
 
