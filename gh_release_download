@@ -756,8 +756,8 @@ function main() {
     # tldr: https://github.com/dbrgn/tealdeer/releases/latest
     start_download_install_binary_with_repo "tldr" "dbrgn/tealdeer" "tealdeer-linux-x86_64-musl"
 
-    # tokei: https://github.com/XAMPPRocky/tokei/releases/latest
-    start_download_install_binary_with_repo "tokei" "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-gnu.tar.gz"
+    # # tokei: https://github.com/XAMPPRocky/tokei/releases/latest
+    # start_download_install_binary_with_repo "tokei" "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-gnu.tar.gz"
 
     # watchexec: https://github.com/watchexec/watchexec/releases/latest
     start_download_install_binary_with_repo "watchexec" "watchexec/watchexec" "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
