@@ -732,7 +732,7 @@ function main() {
     start_download_install_binary_with_repo "hyperfine" "sharkdp/hyperfine" "hyperfine-*-x86_64-unknown-linux-musl.tar.gz"
 
     # lazygit: https://github.com/jesseduffield/lazygit/releases/latest
-    start_download_install_binary_with_repo "lazygit" "jesseduffield/lazygit" "lazygit_0.40.2_Linux_x86_64.tar.gz"
+    start_download_install_binary_with_repo "lazygit" "jesseduffield/lazygit" "lazygit_*_Linux_x86_64.tar.gz"
 
     # lsd: https://github.com/lsd-rs/lsd/releases/latest
     start_download_install_binary_with_repo "lsd" "lsd-rs/lsd" "lsd-*-x86_64-unknown-linux-musl.tar.gz"
