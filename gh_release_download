@@ -696,7 +696,7 @@ function main() {
     start_download_install_binary_with_repo "mise" "jdx/mise" "mise-*-linux-x64"
 
     # atuin: https://github.com/atuinsh/atuin/releases/download
-    start_download_install_binary_with_repo "atuin" "atuinsh/atuin" "atuin-*-x86_64-unknown-linux-musl.tar.gz"
+    start_download_install_binary_with_repo "atuin" "atuinsh/atuin" "atuin-x86_64-unknown-linux-musl.tar.gz"
 
     # ast-grep: https://github.com/ast-grep/ast-grep/releases/latest
     start_download_install_binary_with_repo "ast-grep" "ast-grep/ast-grep" "app-x86_64-unknown-linux-gnu.zip"
