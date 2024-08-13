@@ -753,6 +753,9 @@ function main() {
     # rg: https://github.com/BurntSushi/ripgrep/releases/latest
     start_download_install_binary_with_repo "rg" "BurntSushi/ripgrep" "ripgrep-*-x86_64-unknown-linux-musl.tar.gz"
 
+    # sad: https://github.com/ms-jpq/sad/releases/latest
+    start_download_install_binary_with_repo "sad" "ms-jpq/sad" "x86_64-unknown-linux-musl.zip"
+
     # sd: https://github.com/chmln/sd/releases/latest
     start_download_install_binary_with_repo "sd" "chmln/sd" "sd-*-x86_64-unknown-linux-musl.tar.gz"
 
