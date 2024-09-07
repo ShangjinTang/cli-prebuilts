@@ -8,4 +8,4 @@ Recommended CLI prebuilt binaries which are up-to-date (checked everyday).
 git clone https://github.com/ShangjinTang/cli-prebuilts.git ~/.prebuilts --depth=1
 ```
 
-And add `~/.prebuilts/bin` to your $PATH.
+Then add `~/.prebuilts/bin` to your $PATH.

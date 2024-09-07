@@ -8,6 +8,7 @@ on:
     paths:
       - ".github/workflows/workflow.yml"
       - "gh_release_download"
+      - "README.md"
   workflow_dispatch:
 
 jobs:
