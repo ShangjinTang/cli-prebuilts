@@ -671,7 +671,7 @@ function try_download_install_binary_with_config() {
 function get_markdown_table_line() {
     local NAME=$1
     local REPO=$2
-    echo "| ${NAME} | [${REPO}](https://github.com/${REPO}/releases/latest) | ![GitHub Repo stars](https://img.shields.io/github/stars/${REPO}?style=flat-square&label=) | ![GitHub last release][https://img.shields.io/github/release-date/${REPO}?style=flat-square&label=] | |"
+    echo "| ${NAME} | [${REPO}](https://github.com/${REPO}/releases/latest) | ![GitHub Repo stars](https://img.shields.io/github/stars/${REPO}?style=flat-square&label=) | ![GitHub last release](https://img.shields.io/github/release-date/${REPO}?style=flat-square&label=) | |"
 }
 
 # DESC: Main control flow
