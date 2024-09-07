@@ -693,9 +693,6 @@ function main() {
     env_check
 
     SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-    if [ -d "$SCRIPT_DIR/bin" ]; then
-        export PATH=$PATH:$SCRIPT_DIR/bin
-    fi
 
     # prepare directories
     [[ ! -d $DOWNLOAD_DIR ]] && mkdir -p $DOWNLOAD_DIR
@@ -713,15 +710,18 @@ function main() {
     echo -e "\n<!-- markdown auto generated begin -->" >> "$SCRIPT_DIR"/README.md
     echo -e "| Binary | GitHub HomePage | Stars | Last Release | Description |" >> "$SCRIPT_DIR"/README.md
     echo -e "| --- | --- | --- | --- | --- |" >> "$SCRIPT_DIR"/README.md
-    yq '.[] | .name, .repo, .pattern' "$SCRIPT_DIR"/gh_release_config.yml |
-        while IFS= read -r name && IFS= read -r repo && IFS= read -r pattern; do
-            name=$(remove_double_quotes "$name")
-            repo=$(remove_double_quotes "$repo")
-            pattern=$(remove_double_quotes "$pattern")
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        if [[ $line == *name:* ]]; then
+            name=$(remove_double_quotes "${line##*name: }")
+        elif [[ $line == *repo:* ]]; then
+            repo=$(remove_double_quotes "${line##*repo: }")
+        elif [[ $line == *pattern:* ]]; then
+            pattern=$(remove_double_quotes "${line##*pattern: }")
             try_download_install_binary_with_config "$name" "$repo" "$pattern"
             # shellcheck disable=SC005
             echo -e "$(get_markdown_table_line "$name" "$repo")" >> "$SCRIPT_DIR"/README.md
-        done
+        fi
+    done < "$SCRIPT_DIR"/gh_release_config.yml
     echo -e "<!-- markdown auto generated end -->" >> "$SCRIPT_DIR"/README.md
 }
 
