@@ -707,9 +707,9 @@ function main() {
         print_separate_line_wide_with_optional_arg "Download"
     fi
 
-    sed -i '/\n<!-- markdown auto generated begin -->/,/<!-- markdown auto generated end -->/d' "$SCRIPT_DIR"/README.md
+    cp -f "$SCRIPT_DIR"/README.orig.md "$SCRIPT_DIR"/README.md
     # shellcheck disable=SC2129
-    echo -e "\n<!-- markdown auto generated begin -->" >> "$SCRIPT_DIR"/README.md
+    echo -e "" >> "$SCRIPT_DIR"/README.md
     echo -e "| Binary | GitHub HomePage | Stars | Last Release | Description |" >> "$SCRIPT_DIR"/README.md
     echo -e "| --- | --- | --- | --- | --- |" >> "$SCRIPT_DIR"/README.md
     while IFS= read -r line || [[ -n "$line" ]]; do
@@ -724,7 +724,6 @@ function main() {
             echo -e "$(get_markdown_table_line "$name" "$repo")" >> "$SCRIPT_DIR"/README.md
         fi
     done < "$SCRIPT_DIR"/gh_release_config.yml
-    echo -e "<!-- markdown auto generated end -->" >> "$SCRIPT_DIR"/README.md
 }
 
 # Invoke main with args if not sourced
