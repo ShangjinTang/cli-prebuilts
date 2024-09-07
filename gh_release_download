@@ -620,8 +620,10 @@ function extract_zip_from_download() {
             mv $INSTALL_DIR/sg $INSTALL_DIR/$BINARY &&
             touch $INSTALL_DIR/$BINARY
     else
-        unzip -j $DOWNLOAD_DIR/$PATTERN $BINARY -d $INSTALL_DIR &> /dev/null &&
+        unzip -j $DOWNLOAD_DIR/$PATTERN $BINARY */$BINARY -d $INSTALL_DIR &> /dev/null &&
             touch $INSTALL_DIR/$BINARY
+        echo $INSTALL_DIR/$BINARY
+        echo "unzip -j $DOWNLOAD_DIR/$PATTERN $BINARY */$BINARY -d $INSTALL_DIR"
     fi
 }
 

@@ -79,3 +79,6 @@
 - name: "watchexec"
   repo: "watchexec/watchexec"
   pattern: "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
+- name: "yazi"
+  repo: "sxyazi/yazi"
+  pattern: "yazi-x86_64-unknown-linux-musl.zip"
