@@ -731,6 +731,9 @@ function main() {
     # hyperfine: https://github.com/sharkdp/hyperfine/releases/latest
     start_download_install_binary_with_repo "hyperfine" "sharkdp/hyperfine" "hyperfine-*-x86_64-unknown-linux-musl.tar.gz"
 
+    # jq: https://github.com/jqlang/jq
+    start_download_install_binary_with_repo "jq" "jqlang/jq" "jq-linux64"
+
     # lazygit: https://github.com/jesseduffield/lazygit/releases/latest
     start_download_install_binary_with_repo "lazygit" "jesseduffield/lazygit" "lazygit_*_Linux_x86_64.tar.gz"
 
@@ -767,6 +770,10 @@ function main() {
 
     # watchexec: https://github.com/watchexec/watchexec/releases/latest
     start_download_install_binary_with_repo "watchexec" "watchexec/watchexec" "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
+
+    # yq: https://github.com/mikefarah/yq
+    start_download_install_binary_with_repo "yq" "mikefarah/yq" "yq_linux_amd64"
+
 }
 
 # Invoke main with args if not sourced
