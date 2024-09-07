@@ -625,8 +625,17 @@ function extract_zip_from_download() {
     fi
 }
 
+function remove_double_quotes {
+    local str="$1"
+    while [[ $str == \"*\" ]]; do
+        str=${str#\"}
+        str=${str%\"}
+    done
+    echo "$str"
+}
+
 # shellcheck disable=2086
-function start_download_install_binary_with_repo() {
+function try_download_install_binary_with_config() {
     local BINARY=$1
     local REPO=$2
     local PATTERN=$3
@@ -647,7 +656,6 @@ function start_download_install_binary_with_repo() {
                     install_done_flag=true
                 else
                     pretty_print "  - [FileType] UNRECOGNIZED" "$fg_red"
-                    install_done_flag=false
                     exit 1
                 fi
                 if $install_done_flag; then
@@ -658,6 +666,12 @@ function start_download_install_binary_with_repo() {
             fi
         fi
     fi
+}
+
+function get_markdown_table_line() {
+    local NAME=$1
+    local REPO=$2
+    echo "| ${NAME} | [${REPO}](https://github.com/${REPO}/releases/latest) | ![GitHub Repo stars](https://img.shields.io/github/stars/${REPO}?style=flat-square&label=) | ![GitHub last release][https://img.shields.io/github/release-date/${REPO}?style=flat-square&label=] | |"
 }
 
 # DESC: Main control flow
@@ -678,6 +692,11 @@ function main() {
     print_separate_line_wide_with_optional_arg "ENV CHECK"
     env_check
 
+    SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+    if [ -d "$SCRIPT_DIR/bin" ]; then
+        export PATH=$PATH:$SCRIPT_DIR/bin
+    fi
+
     # prepare directories
     [[ ! -d $DOWNLOAD_DIR ]] && mkdir -p $DOWNLOAD_DIR
     [[ ! -d $INSTALL_DIR ]] && mkdir -p $INSTALL_DIR
@@ -689,91 +708,21 @@ function main() {
         print_separate_line_wide_with_optional_arg "Download"
     fi
 
-    # nvim: https://github.com/neovim/neovim/releases/download
-    start_download_install_binary_with_repo "nvim" "neovim/neovim" "nvim.appimage"
-
-    # mise: https://github.com/jdx/mise/releases/download
-    start_download_install_binary_with_repo "mise" "jdx/mise" "mise-*-linux-x64"
-
-    # atuin: https://github.com/atuinsh/atuin/releases/download
-    start_download_install_binary_with_repo "atuin" "atuinsh/atuin" "atuin-x86_64-unknown-linux-musl.tar.gz"
-
-    # ast-grep: https://github.com/ast-grep/ast-grep/releases/latest
-    start_download_install_binary_with_repo "ast-grep" "ast-grep/ast-grep" "app-x86_64-unknown-linux-gnu.zip"
-
-    # bat: https://github.com/sharkdp/bat/releases/latest
-    start_download_install_binary_with_repo "bat" "sharkdp/bat" "bat-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # croc: https://github.com/schollz/croc/releases/download
-    start_download_install_binary_with_repo "croc" "schollz/croc" "croc_*_Linux-64bit.tar.gz"
-
-    # csvlens: https://github.com/YS-L/csvlens/releases/latest
-    start_download_install_binary_with_repo "csvlens" "YS-L/csvlens" "csvlens-x86_64-unknown-linux-gnu.tar.xz"
-
-    # delta: https://github.com/dandavison/delta/releases/latest
-    start_download_install_binary_with_repo "delta" "dandavison/delta" "delta-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # dua: https://github.com/Byron/dua-cli/releases/latest
-    start_download_install_binary_with_repo "dua" "Byron/dua-cli" "dua-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # dust: https://github.com/bootandy/dust/releases/latest
-    start_download_install_binary_with_repo "dust" "bootandy/dust" "dust-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # eza: https://github.com/eza-community/eza
-    start_download_install_binary_with_repo "eza" "eza-community/eza" "eza_x86_64-unknown-linux-musl.tar.gz"
-
-    # fd: https://github.com/sharkdp/fd/releases/latest
-    start_download_install_binary_with_repo "fd" "sharkdp/fd" "fd-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # hexyl: https://github.com/sharkdp/hexyl/releases/latest
-    start_download_install_binary_with_repo "hexyl" "sharkdp/hexyl" "hexyl-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # hyperfine: https://github.com/sharkdp/hyperfine/releases/latest
-    start_download_install_binary_with_repo "hyperfine" "sharkdp/hyperfine" "hyperfine-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # jq: https://github.com/jqlang/jq
-    start_download_install_binary_with_repo "jq" "jqlang/jq" "jq-linux64"
-
-    # lazygit: https://github.com/jesseduffield/lazygit/releases/latest
-    start_download_install_binary_with_repo "lazygit" "jesseduffield/lazygit" "lazygit_*_Linux_x86_64.tar.gz"
-
-    # lsd: https://github.com/lsd-rs/lsd/releases/latest
-    start_download_install_binary_with_repo "lsd" "lsd-rs/lsd" "lsd-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # macchina: https://github.com/Macchina-CLI/macchina/releases/latest
-    start_download_install_binary_with_repo "macchina" "Macchina-CLI/macchina" "macchina-linux-x86_64"
-
-    # ouch: https://github.com/ouch-org/ouch/releases/latest
-    start_download_install_binary_with_repo "ouch" "ouch-org/ouch" "ouch-x86_64-unknown-linux-musl.tar.gz"
-
-    # procs: https://github.com/dalance/procs/releases/latest
-    start_download_install_binary_with_repo "procs" "dalance/procs" "procs-*-x86_64-linux.zip"
-
-    # pueue & pueued: https://github.com/Nukesor/pueue/releases/latest
-    start_download_install_binary_with_repo "pueue" "Nukesor/pueue" "pueue-linux-x86_64"
-    start_download_install_binary_with_repo "pueued" "Nukesor/pueue" "pueued-linux-x86_64"
-
-    # rg: https://github.com/BurntSushi/ripgrep/releases/latest
-    start_download_install_binary_with_repo "rg" "BurntSushi/ripgrep" "ripgrep-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # sad: https://github.com/ms-jpq/sad/releases/latest
-    start_download_install_binary_with_repo "sad" "ms-jpq/sad" "x86_64-unknown-linux-musl.zip"
-
-    # sd: https://github.com/chmln/sd/releases/latest
-    start_download_install_binary_with_repo "sd" "chmln/sd" "sd-*-x86_64-unknown-linux-musl.tar.gz"
-
-    # tldr: https://github.com/dbrgn/tealdeer/releases/latest
-    start_download_install_binary_with_repo "tldr" "dbrgn/tealdeer" "tealdeer-linux-x86_64-musl"
-
-    # # tokei: https://github.com/XAMPPRocky/tokei/releases/latest
-    # start_download_install_binary_with_repo "tokei" "XAMPPRocky/tokei" "tokei-x86_64-unknown-linux-gnu.tar.gz"
-
-    # watchexec: https://github.com/watchexec/watchexec/releases/latest
-    start_download_install_binary_with_repo "watchexec" "watchexec/watchexec" "watchexec-*-x86_64-unknown-linux-musl.tar.xz"
-
-    # yq: https://github.com/mikefarah/yq
-    start_download_install_binary_with_repo "yq" "mikefarah/yq" "yq_linux_amd64"
-
+    sed -i '/\n<!-- markdown auto generated begin -->/,/<!-- markdown auto generated end -->/d' "$SCRIPT_DIR"/README.md
+    # shellcheck disable=SC2129
+    echo -e "\n<!-- markdown auto generated begin -->" >> "$SCRIPT_DIR"/README.md
+    echo -e "| Binary | GitHub HomePage | Stars | Last Release | Description |" >> "$SCRIPT_DIR"/README.md
+    echo -e "| --- | --- | --- | --- | --- |" >> "$SCRIPT_DIR"/README.md
+    yq '.[] | .name, .repo, .pattern' "$SCRIPT_DIR"/gh_release_config.yml |
+        while IFS= read -r name && IFS= read -r repo && IFS= read -r pattern; do
+            name=$(remove_double_quotes "$name")
+            repo=$(remove_double_quotes "$repo")
+            pattern=$(remove_double_quotes "$pattern")
+            try_download_install_binary_with_config "$name" "$repo" "$pattern"
+            # shellcheck disable=SC005
+            echo -e "$(get_markdown_table_line "$name" "$repo")" >> "$SCRIPT_DIR"/README.md
+        done
+    echo -e "<!-- markdown auto generated end -->" >> "$SCRIPT_DIR"/README.md
 }
 
 # Invoke main with args if not sourced
