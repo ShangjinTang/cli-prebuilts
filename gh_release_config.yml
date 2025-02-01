@@ -1,6 +1,6 @@
 - name: "nvim"
   repo: "neovim/neovim"
-  pattern: "nvim.appimage"
+  pattern: "nvim-linux-x86_64.appimage"
 - name: "mise"
   repo: "jdx/mise"
   pattern: "mise-*-linux-x64"
