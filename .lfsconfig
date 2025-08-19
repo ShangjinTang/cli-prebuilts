@@ -1,0 +1,4 @@
+[lfs]
+	# Skip automatic LFS download during clone for speed
+	# Users can download binaries after clone with: git lfs pull
+	fetchinclude = ""
