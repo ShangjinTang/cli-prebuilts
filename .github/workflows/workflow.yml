@@ -1,0 +1,78 @@
+name: Workflow
+on:
+  schedule:
+    - cron: "0 0 * * *" # execute at 00:00 everyday
+  push:
+    branches:
+      - "**"
+    paths:
+      - ".github/workflows/workflow.yml"
+      - "gh_release_download"
+      - "gh_release_config.yml"
+      - "README.md"
+  workflow_dispatch:
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: false
+
+      - name: Setup Git LFS
+        run: |
+          git lfs install
+          # Configure LFS for CI environment
+          git config lfs.fetchrecentrefsdays 1
+          git config lfs.pruneoffsetdays 1
+          # Pull existing LFS files only if they exist
+          git lfs pull --include="bin/*" || true
+
+      - name: Run script based on 'gh' and commit download releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "shangjin.tang@github.com"
+          git config --local user.name "GitHub Action"
+          ./gh_release_download --all --install --verbose
+          rm -rf ./bin && mv ~/.gh_releases/bin ./bin
+          
+          # Verify LFS tracking for bin files before staging
+          echo "Verifying LFS tracking for bin files..."
+          lfs_error=false
+          for file in bin/*; do
+            if [ -f "$file" ]; then
+              if git check-attr filter "$file" | grep -q "lfs"; then
+                echo "✓ $file is tracked by LFS"
+              else
+                echo "❌ WARNING: $file is NOT tracked by LFS!"
+                lfs_error=true
+              fi
+            fi
+          done
+          
+          if [ "$lfs_error" = true ]; then
+            echo "ERROR: Some bin files are not tracked by LFS!"
+            exit 1
+          fi
+          
+          echo "✅ All bin files are properly tracked by LFS"
+          
+          # Stage all changes including README.md and bin files
+          git add .
+          
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No new files to commit."
+            exit 0
+          fi
+          
+          git commit -m "Update releases [skip ci]"
+          
+          # Push git changes first (faster)
+          git push
+          
+          # Push LFS objects separately  
+          git lfs push --all origin

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# DO NOT move this script to other directories
+PREBUILTS_DIR=$(pwd)
+
+# Get the current epoch (in days)
+current_epoch() {
+    echo $(($(date +%s) / 60 / 60 / 24))
+}
+
+# Check if an update is available
+is_update_available() {
+    local local_head remote_head
+
+    # Get the local and remote HEAD commits
+    local_head=$(git -C "$PREBUILTS_DIR" rev-parse HEAD 2> /dev/null)
+    remote_head=$(git -C "$PREBUILTS_DIR" ls-remote origin HEAD 2> /dev/null | awk '{print $1}')
+
+    # Check if the local and remote HEAD commits differ
+    [[ "$local_head" != "$remote_head" ]]
+}
+
+# Update the prebuilts directory
+update_prebuilts() {
+    echo "prebuilts: updating ..."
+
+    # Change to the prebuilts directory and execute git pull command with LFS support
+    if git -C "$PREBUILTS_DIR" pull --rebase origin HEAD --depth=1 --no-ff; then
+        # Pull LFS files if git-lfs is available
+        if command -v git-lfs > /dev/null 2>&1; then
+            echo "prebuilts: pulling LFS files..."
+            git -C "$PREBUILTS_DIR" lfs pull
+        fi
+        echo "prebuilts: directory successfully updated."
+    else
+        echo "prebuilts: unable to update."
+        exit 1
+    fi
+}
+
+# Check if an update is required
+check_update() {
+    local PREBUILTS_LAST_EPOCH
+
+    # Check the last update epoch
+    if [[ -f "$PREBUILTS_DIR/.prebuilts-update" ]]; then
+        source "$PREBUILTS_DIR/.prebuilts-update"
+    fi
+
+    # Get the update frequency (default to 13 days)
+    local epoch_target=${PREBUILTS_UPDATE_FREQUENCY:-13}
+
+    # Check if the specified update frequency has elapsed
+    if [[ -z $PREBUILTS_LAST_EPOCH ]] || (($(current_epoch) - PREBUILTS_LAST_EPOCH >= epoch_target)); then
+        # Check if an update is available
+        if is_update_available; then
+            # Update the prebuilts directory
+            update_prebuilts
+
+            # Update the last update epoch
+            echo "PREBUILTS_LAST_EPOCH=$(current_epoch)" >| "$PREBUILTS_DIR/.prebuilts-update"
+        else
+            echo "prebuilts: no updates available."
+        fi
+    else
+        echo "prebuilts: update frequency not reached yet."
+    fi
+}
+
+# Perform the update check
+check_update

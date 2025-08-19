@@ -1,0 +1,7 @@
+# Git LFS tracking for binary files
+bin/* filter=lfs diff=lfs merge=lfs -text
+
+# Exclude specific text files that might be in bin/
+bin/*.txt !filter !diff !merge text
+bin/*.md !filter !diff !merge text
+bin/*.json !filter !diff !merge text
