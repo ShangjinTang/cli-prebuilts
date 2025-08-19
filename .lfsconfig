@@ -1,4 +1,6 @@
 [lfs]
-	# Skip automatic LFS download during clone for speed
-	# Users can download binaries after clone with: git lfs pull
+	# Optimize for fast clone without depth=1 requirement
+	# Skip automatic LFS download during clone
 	fetchinclude = ""
+	# Use concurrent transfers for faster downloads
+	concurrenttransfers = 8
