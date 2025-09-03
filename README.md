@@ -69,6 +69,7 @@ The repository is optimized for fast operations:
 - `git pull` updates metadata quickly  
 - `git lfs pull` downloads only binary updates when needed
 - All binaries under `bin/` are properly LFS tracked
+
 | Binary | GitHub HomePage | Stars | Last Release | Description |
 | --- | --- | --- | --- | --- |
 | nvim | [neovim/neovim](https://github.com/neovim/neovim/releases/latest) | ![GitHub Repo stars](https://img.shields.io/github/stars/neovim/neovim?style=flat-square&label=) | ![GitHub last release](https://img.shields.io/github/release-date/neovim/neovim?style=flat-square&label=) | |
