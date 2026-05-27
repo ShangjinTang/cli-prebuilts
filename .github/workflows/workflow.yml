@@ -1,7 +1,8 @@
 name: Workflow
 on:
   schedule:
-    - cron: "0 0 * * *" # execute at 00:00 everyday
+    # - cron: "0 0 * * *" # execute at 00:00 everyday
+    - cron: "0 0 1 * *" # execute at 00:00 of first date in every month
   push:
     branches:
       - "**"
